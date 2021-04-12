@@ -75,6 +75,8 @@ let speedWave = 0.02; // 0.03 // used for sample animations
 let saveSize = 0;
 let alphaSave = 0;
 
+let refreshSwitch = false;
+
 let wWidth, wHeight;
 
 function preload(){
@@ -124,6 +126,11 @@ smooth();
 }
 
 function draw() {
+  if(refreshSwitch){
+    print("Refreshing!");
+    window.location.reload();
+  }
+
   clear();
 
   noFill(); noStroke();
