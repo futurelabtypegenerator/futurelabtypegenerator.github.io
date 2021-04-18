@@ -46,6 +46,15 @@ function initializeRecord(){
     onFinish: (recordedBlobs) => downloadThis(recordedBlobs),
   });
 }
+
+function saveJPG(){
+  recordJPG = true;
+}
+
+function savePNG(){
+  recordPNG = true;
+}
+
 //
 function downloadThis(recordedBlobs){
   const name = 'futurelab_stg_recording.mp4';

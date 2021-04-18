@@ -69,6 +69,8 @@ let bkgdColor, foreColor;
 
 let recordSwitch = false;
 let recordLength;
+let recordJPG = false;
+let recordPNG = false;
 
 let speedWave = 0.02; // 0.03 // used for sample animations
 
@@ -95,14 +97,9 @@ function setup() {
     wHeight++;
   }
 
-  noSmooth();
   frameRate(30);
 
   canvas = createCanvas(wWidth, wHeight, WEBGL);
-  // const gl = canvas.GL;
-  //
-  // gl.enable(gl.CULL_FACE);
-  // gl.cullFace(gl.FRONT_AND_BACK);
 
   bkgdColor = color('#000000');
   foreColor = color('#ffffff');
@@ -112,7 +109,7 @@ function setup() {
 
   pieAdjust = 2*PI/pieSlices;
 
-smooth();
+  smooth();
   updateGlitch1(1);
 
   drawTextures();
@@ -127,7 +124,6 @@ smooth();
 
 function draw() {
   if(refreshSwitch){
-    print("Refreshing!");
     window.location.reload();
   }
 
@@ -140,25 +136,30 @@ function draw() {
     document.querySelector('#download').textContent = 'RECORDING';
   }
 
-  if(backCselect==4){
-    background(255);
-  } else {
-    background(0);
+  if(!recordPNG){
+    if(backCselect==4){
+      background(255);
+    } else {
+      background(0);
+    }
   }
+
 
   push();
   translate(0,0,-5000);
   scale(10);
 
-  if(backCselect==1){
-    texture(pgGradient1);
-    rect(0,0,windowWidth,windowHeight);
-  } else if(backCselect==2){
-    texture(pgGradient2);
-    rect(0,0,windowWidth,windowHeight);
-  } else if(backCselect==3){
-    texture(pgGradient3);
-    rect(0,0,windowWidth,windowHeight);
+  if(!recordPNG){
+    if(backCselect==1){
+      texture(pgGradient1);
+      rect(0,0,windowWidth,windowHeight);
+    } else if(backCselect==2){
+      texture(pgGradient2);
+      rect(0,0,windowWidth,windowHeight);
+    } else if(backCselect==3){
+      texture(pgGradient3);
+      rect(0,0,windowWidth,windowHeight);
+    }
   }
   pop();
 
@@ -213,6 +214,16 @@ function draw() {
     // location.reload();
   }
 
+  if(recordJPG){
+    saveCanvas('FL_STG','jpg');
+    recordJPG = false;
+  }
+
+  if(recordPNG){
+    saveCanvas('FL_STG','png');
+    recordPNG = false;
+  }
+
   if(alphaSave>0){
     if(saveSize==0){
       noFill(); stroke(255,alphaSave);
@@ -227,7 +238,6 @@ function draw() {
     }
     alphaSave -= 8;
   }
-
 }
 
 function windowResized(){

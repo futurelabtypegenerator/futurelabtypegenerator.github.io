@@ -395,11 +395,11 @@
         <div class="button-group-sizes">
           <li>
             <input type="radio" id="size_sq" name="size" value="0" checked="checked" onchange="changeSizes(this)"/>
-            <label for="size_sq">SQUARE</label>
+            <label for="size_sq">SQUARE LOOP</label>
           </li>
           <li>
             <input type="radio" id="size_horz" name="size" value="1" onchange="changeSizes(this)"/>
-            <label for="size_horz">LANDSCAPE</label>
+            <label for="size_horz">LANDSCAPE LOOP</label>
           </li>
         </div>
 
@@ -407,7 +407,10 @@
         <input type="button" value="FIELD">
         <input type="button" value="CASCADE"> -->
       </ul>
-
+      <div class="button-save-images">
+        <button type="button" id="saveImages" onclick="savePNG()">PNG IMAGE</button>
+        <button type="button" id="saveImages" onclick="saveJPG()">JPEG IMAGE</button>
+      </div>
       <!-- <p id="status"></p> -->
       <p id="warning">Downloads may take a minute or two, but it’s worth the wait</p>
 
