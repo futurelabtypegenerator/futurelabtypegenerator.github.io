@@ -99,7 +99,7 @@ button[type=button]:focus {
 .flex-container {
   padding-top: 20px;
   padding-left: 20px;
-  width:260px;
+  width:270px;
   align-items:left;
   /* margin-bottom:50px; */
 }
@@ -197,8 +197,8 @@ input[type=button]:focus {
   text-align:center;
   font-size: 12px;
   float:left;
-  margin:0px 6.65px 6px 0px;
-  width:80px;
+  margin:0px 5px 6px 0px;
+  width:85px;
   height:25px;
   position:relative;
 }
@@ -427,8 +427,9 @@ div.color-toggles{
 #inverterbottomright {filter: invert(0%);}
 
 .button-container-sizes {
-  padding-left: 0px;
-  margin-top: 7px;
+  width:270px;
+  padding-left:0;
+  margin-top:6px;
   list-style-type:none;
   display:flex;
   flex-direction: column;
@@ -438,8 +439,8 @@ div.color-toggles{
   text-align:center;
   font-size: 12px;
   float:left;
-  margin:0px 6px 0px 0px;
-  width:127px;
+  margin:0px 5px 6px 0px;
+  width:127.5px;
   height:25px;
   position:relative;
 }
@@ -471,27 +472,9 @@ div.color-toggles{
 }
 
 .button-container-sizes label:hover {
-  background: #dadada;
-  border:1px solid #dadada;
+  background: #ffffff;
+  border:1px solid #ffffff;
   color:black;
-}
-
-.button-save-images {
-  padding-left: 0px;
-  margin-top: -4px;
-  list-style-type:none;
-  display:flex;
-  flex-direction: row;
-}
-
-.button-save-images button {
-  text-align:center;
-  font-size: 12px;
-  float:left;
-  margin:0px 6px 0px 0px;
-  width:127px;
-  height:25px;
-  position:relative;
 }
 
 #scale-down {
