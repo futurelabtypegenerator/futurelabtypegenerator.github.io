@@ -477,6 +477,10 @@ div.color-toggles{
   color:black;
 }
 
+#download {
+  margin-top:-16px;
+}
+
 #scale-down {
   zoom:0.9;
 }

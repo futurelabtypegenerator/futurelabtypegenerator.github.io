@@ -389,28 +389,31 @@
     </div>
     <div id="inverterbottomleft" class="bl-button">
       <!-- <input type="button" value="DOWNLOAD MP4" id="download" onclick="initializeRecord()"> -->
-      <button type="button" id="download" onclick="initializeRecord()">DOWNLOAD LOOP</button>
-
       <ul class="button-container-sizes">
         <div class="button-group-sizes">
           <li>
-            <input type="radio" id="size_sq" name="size" value="0" checked="checked" onchange="changeSizes(this)"/>
+            <input type="radio" id="size_sq" name="size" value="0" checked="checked" onchange="changeSaveType(this)"/>
             <label for="size_sq">SQUARE LOOP</label>
           </li>
           <li>
-            <input type="radio" id="size_horz" name="size" value="1" onchange="changeSizes(this)"/>
+            <input type="radio" id="size_horz" name="size" value="1" onchange="changeSaveType(this)"/>
             <label for="size_horz">LANDSCAPE LOOP</label>
           </li>
+          <li>
+            <input type="radio" id="png_save" name="size" value="2" onchange="changeSaveType(this)"/>
+            <label for="png_save">PNG IMAGE</label>
+          </li>
+          <li>
+            <input type="radio" id="jpg_save" name="size" value="3" onchange="changeSaveType(this)"/>
+            <label for="jpg_save">JPEG IMAGE</label>
+          </li>
         </div>
-
-        <!-- <input type="button" value="CYLINDER" checked="checked">
-        <input type="button" value="FIELD">
-        <input type="button" value="CASCADE"> -->
       </ul>
-      <div class="button-save-images">
+      <button type="button" id="download" onclick="initializeRecord()">DOWNLOAD</button>
+      <!-- <div class="button-save-images">
         <button type="button" id="saveImages" onclick="savePNG()">PNG IMAGE</button>
         <button type="button" id="saveImages" onclick="saveJPG()">JPEG IMAGE</button>
-      </div>
+      </div> -->
       <!-- <p id="status"></p> -->
       <p id="warning">Downloads may take a minute or two, but it’s worth the wait</p>
 

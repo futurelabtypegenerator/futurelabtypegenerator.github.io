@@ -12,39 +12,54 @@ function change_showHideClass() {
 }
 
 function initializeRecord(){
-  if(saveSize==0){
-    wWidth = 1080;
-    wHeight = 1080;
-  } else if (saveSize==1){
-    wWidth = 1536;
-    wHeight = 864; //1536,864
+  if(saveSize==0 || saveSize ==1){
+    if(saveSize==0){
+      wWidth = 1080;
+      wHeight = 1080;
+    } else if (saveSize==1){
+      wWidth = 1536;
+      wHeight = 864; //1536,864
+    }
+
+    resizeCanvas(wWidth,wHeight);
+
+    recordSwitch = true;
+
+    if(generatorSelect==2){
+      recordStop = (2*PI)/(speedWave/2) + frameCount + 2;
+    } else {
+      recordStop = (2*PI)/speedWave + frameCount + 2;
+  //    recordStop = frameCount + 10;
+    }
+
+    startRecording({
+      // preset:"veryfast",
+      crf:26,
+      // we're passing in 'onProgress' as a parameter to get status feedback on-screen - this is completely optional and you'd also get this info on the console!
+      // onProgress: (progress) => document.querySelector('#download').textContent = `PROGRESS: ${(100 * progress).toFixed(1)}%`,
+      onProgress: function(progress){
+        document.querySelector('#download').textContent = `PROGRESS: ${(100 * progress).toFixed(1)}%`;
+        // if(progress>0.99){
+        //   print(true);
+        //   document.querySelector('#download').textContent = 'DOWNLOAD LOOP';
+        // }
+      },
+      onFinish: (recordedBlobs) => downloadThis(recordedBlobs),
+    });
+  } else if(saveSize == 2){
+    savePNG();
+  } else if(saveSize == 3){
+    saveJPG();
   }
+}
 
-  resizeCanvas(wWidth,wHeight);
+function changeSaveType(element){
+  saveSize = element.value;
 
-  recordSwitch = true;
-
-  if(generatorSelect==2){
-    recordStop = (2*PI)/(speedWave/2) + frameCount + 2;
-  } else {
-    recordStop = (2*PI)/speedWave + frameCount + 2;
-//    recordStop = frameCount + 10;
+  if(element.value == 0 || element.value == 1){
+    print(saveSize);
+    alphaSave = 200;
   }
-
-  startRecording({
-    // preset:"veryfast",
-    crf:26,
-    // we're passing in 'onProgress' as a parameter to get status feedback on-screen - this is completely optional and you'd also get this info on the console!
-    // onProgress: (progress) => document.querySelector('#download').textContent = `PROGRESS: ${(100 * progress).toFixed(1)}%`,
-    onProgress: function(progress){
-      document.querySelector('#download').textContent = `PROGRESS: ${(100 * progress).toFixed(1)}%`;
-      // if(progress>0.99){
-      //   print(true);
-      //   document.querySelector('#download').textContent = 'DOWNLOAD LOOP';
-      // }
-    },
-    onFinish: (recordedBlobs) => downloadThis(recordedBlobs),
-  });
 }
 
 function saveJPG(){
@@ -702,11 +717,7 @@ function showPresets(element){
   }
 }
 
-function changeSizes(element){
-  saveSize = element.value;
-  print(saveSize);
-  alphaSave = 200;
-}
+
 
 function changeLogo(a){
   if(a==0){
